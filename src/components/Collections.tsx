@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import frontDeskImage from "@/assets/collection-frontdesk.jpg";
 import restaurantImage from "@/assets/collection-restaurant.jpg";
 import medicalImage from "@/assets/collection-medical.jpg";
@@ -10,26 +11,31 @@ const collections = [
     title: "Front Desk Collection",
     description: "First impressions with elegance.",
     image: frontDeskImage,
+    link: "/collections/front-desk",
   },
   {
     title: "Restaurant & F&B",
     description: "Style and performance in motion.",
     image: restaurantImage,
+    link: "/collections/restaurant",
   },
   {
     title: "Hospital & Medical",
     description: "Comfort, hygiene & modern aesthetics.",
     image: medicalImage,
+    link: "/collections/hospital-medical",
   },
   {
     title: "Resort & Spa Wear",
     description: "Relaxed luxury with functional detailing.",
     image: resortImage,
+    link: "/collections/resort-poolside",
   },
   {
     title: "Housekeeping",
     description: "Practical and polished everyday style.",
     image: housekeepingImage,
+    link: "/collections/housekeeping",
   },
 ];
 
@@ -48,24 +54,29 @@ const Collections = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {collections.map((collection, index) => (
-            <Card
+            <Link
               key={collection.title}
-              className="group overflow-hidden border-0 shadow-elegant hover:shadow-glow transition-elegant cursor-pointer animate-scale-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              to={collection.link}
+              className="block"
             >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={collection.image}
-                  alt={collection.title}
-                  className="w-full h-full object-cover transition-elegant group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-60 group-hover:opacity-80 transition-elegant" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-primary-foreground">
-                  <h3 className="text-2xl font-bold mb-2">{collection.title}</h3>
-                  <p className="text-primary-foreground/90 font-light">{collection.description}</p>
+              <Card
+                className="group overflow-hidden border-0 shadow-elegant hover:shadow-glow transition-elegant cursor-pointer animate-scale-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img
+                    src={collection.image}
+                    alt={collection.title}
+                    className="w-full h-full object-cover transition-elegant group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-60 group-hover:opacity-80 transition-elegant" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-primary-foreground">
+                    <h3 className="text-2xl font-bold mb-2">{collection.title}</h3>
+                    <p className="text-primary-foreground/90 font-light">{collection.description}</p>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
